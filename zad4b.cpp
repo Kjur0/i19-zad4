@@ -1,60 +1,15 @@
 #include <iostream>
-#include <string>
 #include <fstream>
 #include <sstream>
 #include <vector>
 #include <Windows.h>
 #include <Wincrypt.h>
 #include <iomanip>
+#include "zad4ab.h"
 
 using namespace std;
 
-int zad2numberUpperCase(string str) {
-	int cnt = 0;
-	for (int i = 0; i < str.length(); i++)
-		if (isupper(str[i])) cnt++;
-	return cnt;
-}
-
-int zad2numberLowerCase(string str) {
-	int cnt = 0;
-	for (int i = 0; i < str.length(); i++)
-		if (islower(str[i])) cnt++;
-	return cnt;
-}
-
-int zad2numberDigits(string str) {
-	int cnt = 0;
-	for (int i = 0; i < str.length(); i++)
-		if (isdigit(str[i])) cnt++;
-	return cnt;
-}
-
-bool zad2consecutiveLowerCase(string str) {
-	for (int i = 0; i < str.length() - 2; i++)
-		if (islower(str[i]) && islower(str[i + 2]) && str[i] + 1 == str[i + 1] && str[i] + 2 == str[i + 2]) return true;
-	return false;
-}
-
-bool zad2consecutiveUpperCase(string str) {
-	for (int i = 0; i < str.length() - 2; i++)
-		if (isupper(str[i]) && isupper(str[i + 2]) && str[i] + 1 == str[i + 1] && str[i] + 2 == str[i + 2]) return true;
-	return false;
-}
-
-bool zad2consecutiveDigits(string str) {
-	for (int i = 0; i < str.length() - 2; i++)
-		if (isdigit(str[i]) && isdigit(str[i + 2]) && str[i] + 1 == str[i + 1] && str[i] + 2 == str[i + 2]) return true;
-	return false;
-}
-
-bool zad2repeatingCharacters(string str) {
-	for (int i = 0; i < str.length() - 2; i++)
-		if (str[i] == str[i + 1] == str[i + 2]) return true;
-	return false;
-}
-
-class zad2UserManager {
+class UserManager {
 private:
 	string password;
 protected:
@@ -93,14 +48,14 @@ private:
 			cout << "WprowadŸ has³o: ";
 			cin >> password;
 			if (password.length() < MIN_LENGTH) cout << "Has³o jest za krótkie!" << endl;
-			if (zad2numberUpperCase(password) < 1) cout << "Has³o nie zawiera co najmniej 1 du¿ej litery!" << endl;
-			if (zad2numberLowerCase(password) < 1) cout << "Has³o nie zawiera co najmniej 1 ma³ej litery!" << endl;
-			if (zad2numberDigits(password) < 1) cout << "Has³o nie zawiera co najmniej 1 cyfry!" << endl;
-			if (zad2consecutiveUpperCase(password)) cout << "Has³o zawiera ci¹g kolejnych wielkich liter!" << endl;
-			if (zad2consecutiveLowerCase(password)) cout << "Has³o zawiera ci¹g kolejnych ma³ych liter!" << endl;
-			if (zad2consecutiveDigits(password)) cout << "Has³o zawiera ci¹g kolejnych cyfr!" << endl;
-			if (zad2repeatingCharacters(password)) cout << "Has³o zawiera sekwencjê powtarzaj¹cych siê znaków!" << endl;
-		} while (password.length() < MIN_LENGTH || zad2numberUpperCase(password) < 1 || zad2numberLowerCase(password) < 1 || zad2numberDigits(password) < 1 || zad2consecutiveUpperCase(password) || zad2consecutiveLowerCase(password) || zad2consecutiveDigits(password) || zad2repeatingCharacters(password));
+			if (numberUpperCase(password) < 1) cout << "Has³o nie zawiera co najmniej 1 du¿ej litery!" << endl;
+			if (numberLowerCase(password) < 1) cout << "Has³o nie zawiera co najmniej 1 ma³ej litery!" << endl;
+			if (numberDigits(password) < 1) cout << "Has³o nie zawiera co najmniej 1 cyfry!" << endl;
+			if (consecutiveUpperCase(password)) cout << "Has³o zawiera ci¹g kolejnych wielkich liter!" << endl;
+			if (consecutiveLowerCase(password)) cout << "Has³o zawiera ci¹g kolejnych ma³ych liter!" << endl;
+			if (consecutiveDigits(password)) cout << "Has³o zawiera ci¹g kolejnych cyfr!" << endl;
+			if (repeatingCharacters(password)) cout << "Has³o zawiera sekwencjê powtarzaj¹cych siê znaków!" << endl;
+		} while (password.length() < MIN_LENGTH || numberUpperCase(password) < 1 || numberLowerCase(password) < 1 || numberDigits(password) < 1 || consecutiveUpperCase(password) || consecutiveLowerCase(password) || consecutiveDigits(password) || repeatingCharacters(password));
 		cout << "Has³o jest prawid³owe!" << endl;
 	}
 
@@ -149,7 +104,7 @@ public:
 		passhash = ss.str();
 	}
 
-	zad2UserManager() {
+	UserManager() {
 		ofstream file("users.csv", ios::app);
 		file.close();
 		readUsernames();
@@ -177,10 +132,7 @@ public:
 };
 
 void zad2() {
-	setlocale(LC_ALL, "pl");
-	zad2UserManager umngr;
+	UserManager umngr;
 	umngr.save();
-	cout << endl << endl << endl << "Naciœnij dowolny klawisz, aby kontynuowaæ...";
-	system("pause>nul");
 }
 

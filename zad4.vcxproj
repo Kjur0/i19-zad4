@@ -130,6 +130,9 @@
       <TranslateIncludes Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">false</TranslateIncludes>
     </ClCompile>
   </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="zad4ab.h" />
+  </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
   </ImportGroup>
