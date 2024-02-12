@@ -126,9 +126,11 @@
   <ItemGroup>
     <ClCompile Include="main.cpp" />
     <ClCompile Include="zad4a.cpp" />
-    <ClCompile Include="zad4b.cpp">
-      <TranslateIncludes Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">false</TranslateIncludes>
-    </ClCompile>
+    <ClCompile Include="zad4ab.cpp" />
+    <ClCompile Include="zad4b.cpp" />
+    <ClCompile Include="zad4c.cpp" />
+    <ClCompile Include="zad4d.cpp" />
+    <ClCompile Include="zad4e.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="zad4ab.h" />
